@@ -1,0 +1,25 @@
+provider "vsphere" {
+    user = "XXXXXXX" # You need to use this format, not example\username
+    password = "XXXX"
+    vsphere_server = "dc1-XXXXXXXXX"
+    version = "0.12.26"
+
+    # If you use self-signed certificates
+    allow_unverified_ssl = true
+}
+
+resource "vsphere_virtual_machine" "webserver" {
+    name = "webserver1"
+    vcpu = 1
+    memory = 8048
+
+network_interface {
+    label = "XXXXXXXXXXXG"
+}
+
+disk {
+   datastore = "DC1-NonProd-DS01"
+   template = "Windows_2019_DC_x64_2020-12"
+}
+
+}
